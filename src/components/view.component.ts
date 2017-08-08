@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
-import { View, Extent } from 'openlayers';
+import { View, Extent, Coordinate } from 'openlayers';
 import { MapComponent } from './map.component';
 
 @Component({
@@ -10,7 +10,7 @@ export class ViewComponent implements OnInit, OnChanges, OnDestroy {
   public instance: View;
   public componentType: string = 'view';
 
-  @Input() constrainRotation: boolean|number;
+  @Input() constrainRotation: boolean | number;
   @Input() enableRotation: boolean;
   @Input() extent: Extent;
   @Input() maxResolution: number;
@@ -22,6 +22,7 @@ export class ViewComponent implements OnInit, OnChanges, OnDestroy {
   @Input() rotation: number;
   @Input() zoom: number;
   @Input() zoomFactor: number;
+  @Input() center: Coordinate;
 
   constructor(private host: MapComponent) {
   }
@@ -30,6 +31,7 @@ export class ViewComponent implements OnInit, OnChanges, OnDestroy {
     // console.log('creating ol.View instance with: ', this);
     this.instance = new View(this);
     this.host.instance.setView(this.instance);
+    console.log('INIT VIEW');
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -37,12 +39,23 @@ export class ViewComponent implements OnInit, OnChanges, OnDestroy {
     if (!this.instance) {
       return;
     }
+    console.log(changes);
     for (let key in changes) {
       if (changes.hasOwnProperty(key)) {
         switch (key) {
           case 'zoom':
             /** Work-around: setting the zoom via setProperties does not work. */
             this.instance.setZoom(changes[key].currentValue);
+            break;
+          case 'extent':
+          console.log(changes[key].currentValue);
+            /** Work-around: setting the zoom via setProperties does not work. */
+            this.instance.fit(changes[key].currentValue);
+            break;
+          case 'center':
+          console.log(changes[key].currentValue);
+            /** Work-around: setting the zoom via setProperties does not work. */
+            this.instance.setCenter(changes[key].currentValue);
             break;
           default:
             break;
