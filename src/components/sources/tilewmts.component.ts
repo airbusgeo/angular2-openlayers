@@ -1,4 +1,4 @@
-import { Component, Host, Input, OnInit, forwardRef } from '@angular/core';
+import { Component, Host, Input, OnInit, forwardRef, AfterContentInit , ContentChild } from '@angular/core';
 import {
     TileLoadFunctionType,
     AttributionLike,
@@ -11,6 +11,7 @@ import {
 } from 'openlayers';
 import { LayerTileComponent } from '../layers';
 import { SourceComponent } from './source.component';
+import { TileGridWMTSComponent } from '../tilegridwmts.component';
 
 @Component({
     selector: 'aol-source-tilewmts',
@@ -19,7 +20,8 @@ import { SourceComponent } from './source.component';
         { provide: SourceComponent, useExisting: forwardRef(() => SourceTileWMTSComponent) }
     ]
 })
-export class SourceTileWMTSComponent extends SourceComponent implements OnInit {
+export class SourceTileWMTSComponent extends SourceComponent implements AfterContentInit  {
+
     instance: source.WMTS;
     @Input() cacheSize?: number;
     @Input() crossOrigin?: (string);
@@ -41,12 +43,18 @@ export class SourceTileWMTSComponent extends SourceComponent implements OnInit {
     @Input() urls?: string[];
     @Input() wrapX?: boolean;
 
+    @ContentChild(TileGridWMTSComponent) tileGridWMTS: TileGridWMTSComponent;
+
     constructor( @Host() layer: LayerTileComponent) {
         super(layer);
     }
 
-    ngOnInit() {
-        this.instance = new source.WMTS(this);
-        this.host.instance.setSource(this.instance);
+    ngAfterContentInit(): void {
+        console.log(this.tileGridWMTS);
+        if (this.tileGridWMTS) {
+            this.tileGrid = this.tileGridWMTS.instance;
+            this.instance = new source.WMTS(this);
+            this.host.instance.setSource(this.instance);
+        }
     }
 }
