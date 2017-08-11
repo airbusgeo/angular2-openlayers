@@ -50,7 +50,6 @@ export class SourceTileWMTSComponent extends SourceComponent implements AfterCon
     }
 
     ngAfterContentInit(): void {
-        console.log(this.tileGridWMTS);
         if (this.tileGridWMTS) {
             this.tileGrid = this.tileGridWMTS.instance;
             this.instance = new source.WMTS(this);
