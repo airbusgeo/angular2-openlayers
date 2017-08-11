@@ -1,17 +1,13 @@
 import { Component, Host, Input, OnInit, forwardRef } from '@angular/core';
 import {
     TileLoadFunctionType,
-    olx,
     AttributionLike,
-    WMTSRequestEncoding,
-    LogoOptions,
     tilegrid,
     ProjectionLike,
     source,
     ImageTile,
     TileCoord,
-    Tile,
-    GlobalObject
+    Tile
 } from 'openlayers';
 import { LayerTileComponent } from '../layers';
 import { SourceComponent } from './source.component';
@@ -27,11 +23,11 @@ export class SourceTileWMTSComponent extends SourceComponent implements OnInit {
     instance: source.WMTS;
     @Input() cacheSize?: number;
     @Input() crossOrigin?: (string);
-    @Input() logo?: (string | LogoOptions);
+    @Input() logo?: (string | olx.LogoOptions);
     @Input() tileGrid: tilegrid.WMTS;
     @Input() projection: ProjectionLike;
     @Input() reprojectionErrorThreshold?: number;
-    @Input() requestEncoding?: (WMTSRequestEncoding | string);
+    @Input() requestEncoding?: (source.WMTSRequestEncoding | string);
     @Input() layer: string;
     @Input() style: string;
     @Input() tileClass?: ((n: ImageTile, coords: TileCoord, state: Tile.State, s1: string, s2: string, type: TileLoadFunctionType) => any);
