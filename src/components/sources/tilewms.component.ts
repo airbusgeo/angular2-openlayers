@@ -34,8 +34,4 @@ export class SourceTileWMSComponent extends SourceComponent implements OnInit, O
     this.instance = new source.TileWMS(this);
     this.host.instance.setSource(this.instance);
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-  }
 }

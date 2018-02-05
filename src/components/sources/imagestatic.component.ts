@@ -28,8 +28,4 @@ export class SourceImageStaticComponent extends SourceComponent implements OnIni
     this.instance = new source.ImageStatic(this);
     this.host.instance.setSource(this.instance);
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-  }
 }

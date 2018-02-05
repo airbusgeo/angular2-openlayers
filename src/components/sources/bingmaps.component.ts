@@ -31,8 +31,4 @@ export class SourceBingmapsComponent extends SourceComponent implements OnInit, 
     this.instance = new source.BingMaps(this);
     this.host.instance.setSource(this.instance);
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-  }
 }

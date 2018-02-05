@@ -59,8 +59,4 @@ export class SourceTileWMTSComponent extends SourceComponent implements AfterCon
       this.setLayerSource();
     }
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-  }
 }

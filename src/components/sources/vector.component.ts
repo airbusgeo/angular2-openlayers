@@ -27,8 +27,4 @@ export class SourceVectorComponent extends SourceComponent implements OnInit, On
     this.instance = new source.Vector(this);
     this.host.instance.setSource(this.instance);
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-  }
 }

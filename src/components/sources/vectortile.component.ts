@@ -40,8 +40,4 @@ export class SourceVectorTileComponent extends SourceComponent implements AfterC
     this.instance = new source.VectorTile(this);
     this.host.instance.setSource(this.instance);
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-  }
 }

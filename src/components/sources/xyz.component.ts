@@ -42,8 +42,4 @@ export class SourceXYZComponent extends SourceComponent implements AfterContentI
     this.instance = new source.XYZ(this);
     this.host.instance.setSource(this.instance);
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-  }
 }

@@ -33,8 +33,4 @@ export class SourceImageWMSComponent extends SourceComponent implements OnInit, 
     this.instance = new source.ImageWMS(this);
     this.host.instance.setSource(this.instance);
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-  }
 }

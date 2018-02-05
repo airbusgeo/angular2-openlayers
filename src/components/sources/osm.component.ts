@@ -35,8 +35,4 @@ export class SourceOsmComponent extends SourceXYZComponent implements AfterConte
     this.instance = new source.OSM(this);
     this.host.instance.setSource(this.instance);
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-  }
 }
