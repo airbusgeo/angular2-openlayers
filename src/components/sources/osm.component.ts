@@ -1,8 +1,9 @@
-import { Component, Host, forwardRef, Input, AfterContentInit } from '@angular/core';
+import {Component, Host, forwardRef, Input, AfterContentInit, Optional, OnInit} from '@angular/core';
 import { source, AttributionLike, TileLoadFunctionType } from 'openlayers';
 import { LayerTileComponent } from '../layers';
 import { SourceComponent } from './source.component';
 import { SourceXYZComponent } from './xyz.component';
+import {SourceRasterComponent} from './raster.component';
 
 @Component({
   selector: 'aol-source-osm',
@@ -11,7 +12,7 @@ import { SourceXYZComponent } from './xyz.component';
     { provide: SourceComponent, useExisting: forwardRef(() => SourceOsmComponent) }
   ]
 })
-export class SourceOsmComponent extends SourceXYZComponent implements AfterContentInit {
+export class SourceOsmComponent extends SourceXYZComponent implements OnInit, AfterContentInit {
   instance: source.OSM;
 
   @Input() attributions: AttributionLike;
@@ -24,8 +25,9 @@ export class SourceOsmComponent extends SourceXYZComponent implements AfterConte
   @Input() url: string;
   @Input() wrapX: boolean;
 
-  constructor(@Host() layer: LayerTileComponent) {
-    super(layer);
+  constructor(@Host() @Optional() layer: LayerTileComponent,
+              @Host() @Optional() raster?: SourceRasterComponent) {
+    super(layer, raster);
   }
 
   ngAfterContentInit() {
@@ -33,6 +35,6 @@ export class SourceOsmComponent extends SourceXYZComponent implements AfterConte
       this.tileGrid = this.tileGridXYZ.instance;
     }
     this.instance = new source.OSM(this);
-    this.host.instance.setSource(this.instance);
+    this.setSource(this.instance);
   }
 }

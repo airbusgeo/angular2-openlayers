@@ -1,7 +1,8 @@
-import { Host, Input, OnDestroy, OnInit } from '@angular/core';
+import {AfterContentInit, Host, Input, OnDestroy, OnInit, Optional} from '@angular/core';
 import { source } from 'openlayers';
 import { LayerComponent } from '../layers';
 import AttributionLike = ol.AttributionLike;
+import { SourceRasterComponent } from './raster.component';
 
 export class SourceComponent implements OnInit, OnDestroy {
   public instance: source.Source;
@@ -9,14 +10,30 @@ export class SourceComponent implements OnInit, OnDestroy {
 
   @Input() attributions: AttributionLike;
 
-  constructor(@Host() protected host: LayerComponent) {
+  constructor(protected host: LayerComponent, protected raster?: SourceRasterComponent) {
   }
 
   ngOnInit() {
-    this.host.instance.setSource(this.instance);
+    this.setSource(this.instance);
   }
 
   ngOnDestroy() {
-    this.host.instance.setSource(null);
+    if (this.host) {
+      this.host.instance.setSource(null);
+    }
+
+    if (this.raster) {
+      this.raster.sources = [];
+    }
+  }
+
+  protected setSource(source: source.Source) {
+    if (this.host) {
+      this.host.instance.setSource(source);
+    }
+
+    if (this.raster) {
+      this.raster.sources = [source];
+    }
   }
 }
