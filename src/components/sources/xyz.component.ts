@@ -23,7 +23,7 @@ import { SourceRasterComponent } from './raster.component';
     { provide: SourceComponent, useExisting: forwardRef(() => SourceXYZComponent) }
   ]
 })
-export class SourceXYZComponent extends SourceComponent implements OnInit, AfterContentInit, OnChanges {
+export class SourceXYZComponent extends SourceComponent implements AfterContentInit, OnChanges {
   instance: source.XYZ;
   @Input() cacheSize: number;
   @Input() crossOrigin: string;
@@ -53,7 +53,7 @@ export class SourceXYZComponent extends SourceComponent implements OnInit, After
       this.tileGrid = this.tileGridXYZ.instance;
     }
     this.instance = new source.XYZ(this);
-    this.setSource(this.instance);
+    this._register(this.instance);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -71,7 +71,7 @@ export class SourceXYZComponent extends SourceComponent implements OnInit, After
     this.instance.setProperties(properties, false);
     if (changes.hasOwnProperty('url')) {
       this.instance = new source.XYZ(this);
-      this.host.instance.setSource(this.instance);
+      this._register(this.instance);
     }
   }
 }

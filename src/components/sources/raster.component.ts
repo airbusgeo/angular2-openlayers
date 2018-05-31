@@ -23,7 +23,7 @@ import { LayerImageComponent } from '../layers';
     }
   ]
 })
-export class SourceRasterComponent extends SourceComponent implements OnInit, AfterContentInit {
+export class SourceRasterComponent extends SourceComponent implements AfterContentInit {
   instance: source.Raster;
 
   @Input() operation?: RasterOperation;
@@ -39,11 +39,13 @@ export class SourceRasterComponent extends SourceComponent implements OnInit, Af
   constructor(@Host() layer: LayerImageComponent) {
     super(layer);
   }
-  
+
   ngAfterContentInit() {
     this.instance = new source.Raster(this);
-    this.setSource(this.instance);
+
     this.instance.on('beforeoperations', (event: source.RasterEvent) => this.beforeOperations.emit(event));
     this.instance.on('afteroperations', (event: source.RasterEvent) => this.afterOperations.emit(event));
+
+    this._register(this.instance);
   }
 }

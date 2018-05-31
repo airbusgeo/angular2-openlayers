@@ -12,7 +12,7 @@ import {SourceRasterComponent} from './raster.component';
     { provide: SourceComponent, useExisting: forwardRef(() => SourceOsmComponent) }
   ]
 })
-export class SourceOsmComponent extends SourceXYZComponent implements OnInit, AfterContentInit {
+export class SourceOsmComponent extends SourceXYZComponent implements AfterContentInit {
   instance: source.OSM;
 
   @Input() attributions: AttributionLike;
@@ -35,6 +35,6 @@ export class SourceOsmComponent extends SourceXYZComponent implements OnInit, Af
       this.tileGrid = this.tileGridXYZ.instance;
     }
     this.instance = new source.OSM(this);
-    this.setSource(this.instance);
+    this._register(this.instance);
   }
 }

@@ -4,17 +4,13 @@ import { LayerComponent } from '../layers';
 import AttributionLike = ol.AttributionLike;
 import { SourceRasterComponent } from './raster.component';
 
-export class SourceComponent implements OnInit, OnDestroy {
+export class SourceComponent implements OnDestroy {
   public instance: source.Source;
   public componentType: string = 'source';
 
   @Input() attributions: AttributionLike;
 
   constructor(protected host: LayerComponent, protected raster?: SourceRasterComponent) {
-  }
-
-  ngOnInit() {
-    this.setSource(this.instance);
   }
 
   ngOnDestroy() {
@@ -27,7 +23,7 @@ export class SourceComponent implements OnInit, OnDestroy {
     }
   }
 
-  protected setSource(source: source.Source) {
+  protected _register(source: source.Source) {
     if (this.host) {
       this.host.instance.setSource(source);
     }

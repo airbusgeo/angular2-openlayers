@@ -7,7 +7,7 @@
     <aol-coordinate [x]="1.4886" [y]="43.5554" [srid]="'EPSG:4326'"></aol-coordinate>
   </aol-view>
 
-  <aol-layer-image [opacity]="selectLayer === 'osm' ? 1 : 0">
+  <aol-layer-image *ngIf="selectLayer === 'osm'">
     <aol-source-raster #raster1
                        [operation]="operation"
                        [threads]="threads"
@@ -19,7 +19,7 @@
     </aol-source-raster>
   </aol-layer-image>
 
-  <aol-layer-image [opacity]="selectLayer === 'xyz' ? 1 : 0">
+  <aol-layer-image *ngIf="selectLayer === 'xyz'">
     <aol-source-raster #raster2
                        [operation]="operation"
                        [threads]="threads"
@@ -33,6 +33,7 @@
       </aol-source-xyz>
     </aol-source-raster>
   </aol-layer-image>
+
 </aol-map>
 
 <form>
