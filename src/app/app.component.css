@@ -1,17 +1,29 @@
-nav {
+header {
+  top: 0;
+  height: 75px;
+  width: 100%;
+  display: -ms-flexbox;
   display: flex;
+  flex-wrap: wrap;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  z-index: 4;
+  background-color: #202124;
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  opacity: 1;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
 }
 
-nav a {
-  display: flex;
-  color: black;
-  border: 1px black solid;
-  text-decoration: none;
-  padding: 5px 10px;
-  margin: 5px;
-  border-radius: 5px;
+header h1 {
+  padding-left: 1rem;
+  cursor: pointer;
 }
 
-nav a.active {
-  background: lightblue;
+.main-container {
+  height: calc(100% - 72px);
+  background-color: white;
+  margin: 0px;
+  overflow: auto;
 }
