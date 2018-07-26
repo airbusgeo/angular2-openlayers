@@ -7,9 +7,91 @@ interface RasterData {
 }
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './raster.component.html',
-  styleUrls: ['./raster.component.css'],
+  selector: 'app-raster',
+  template: `
+    <aol-map [width]="'100%'" [height]="'100%'">
+      <aol-interaction-default></aol-interaction-default>
+      <aol-control-defaults></aol-control-defaults>
+      <aol-control-fullscreen></aol-control-fullscreen>
+
+      <aol-view [zoom]="14">
+        <aol-coordinate [x]="1.4886" [y]="43.5554" [srid]="'EPSG:4326'"></aol-coordinate>
+      </aol-view>
+
+      <aol-layer-image *ngIf="selectLayer === 'osm'">
+        <aol-source-raster #raster1
+                           [operation]="operation"
+                           [threads]="threads"
+                           [lib]="lib"
+                           [operationType]="operationType"
+                           (beforeOperations)="beforeOperations($event)"
+                           (afterOperations)="afterOperations($event)">
+          <aol-source-osm></aol-source-osm>
+        </aol-source-raster>
+      </aol-layer-image>
+
+      <aol-layer-image *ngIf="selectLayer === 'xyz'">
+        <aol-source-raster #raster2
+                           [operation]="operation"
+                           [threads]="threads"
+                           [lib]="lib"
+                           [operationType]="operationType"
+                           (beforeOperations)="beforeOperations($event)"
+                           (afterOperations)="afterOperations($event)">
+          <aol-source-xyz
+            url="https://c.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=0e6fc415256d4fbb9b5166a718591d71"
+            crossOrigin="">
+          </aol-source-xyz>
+        </aol-source-raster>
+      </aol-layer-image>
+
+    </aol-map>
+
+    <div class="controls">
+      <form>
+        <input type="radio" name="layer" value="osm" [(ngModel)]="selectLayer">OSM<br>
+        <input type="radio" name="layer" value="xyz" [(ngModel)]="selectLayer">XYZ<br>
+      </form>
+
+      <div class="control">
+        <span>Contrast : </span>
+        <input type="range" min="-255" max="255"
+               [(ngModel)]="contrast"
+               (input)="updateRaster()" />
+        <span> ({{ contrast }})</span>
+      </div>
+      <div class="control">
+        <span>Brightness : </span>
+        <input type="range" min="-255" max="255"
+               [(ngModel)]="brightness"
+               (input)="updateRaster()" />
+        <span> ({{ brightness }})</span>
+      </div>
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        display: flex;
+      }
+
+      aol-map {
+        width: 70%;
+      }
+
+      .controls {
+        width: 28%;
+        padding: 1rem;
+      }
+
+      .control {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 20px;
+      }
+    `,
+  ],
 })
 export class RasterComponent {
   threads = 4;
