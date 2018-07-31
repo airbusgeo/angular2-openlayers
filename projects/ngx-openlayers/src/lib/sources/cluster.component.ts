@@ -1,8 +1,10 @@
 import { Component, Host, Input, forwardRef, ContentChild, AfterContentInit } from '@angular/core';
-import { source, Feature, geom } from 'openlayers';
+import { Feature } from 'ol';
 import { LayerVectorComponent } from '../layers/layervector.component';
 import { SourceComponent } from './source.component';
 import { SourceVectorComponent } from './vector.component';
+import { Cluster, Vector } from 'ol/source';
+import { Point } from 'ol/geom';
 
 @Component({
   selector: 'aol-source-cluster',
@@ -10,16 +12,16 @@ import { SourceVectorComponent } from './vector.component';
   providers: [{ provide: SourceComponent, useExisting: forwardRef(() => SourceClusterComponent) }],
 })
 export class SourceClusterComponent extends SourceComponent implements AfterContentInit {
-  instance: source.Cluster;
+  instance: Cluster;
 
   @Input()
   distance: number;
   @Input()
-  geometryFunction?: ((feature: Feature) => geom.Point);
+  geometryFunction?: ((feature: Feature) => Point);
 
   @ContentChild(SourceVectorComponent)
   sourceVectorComponent: SourceVectorComponent;
-  source: source.Vector;
+  source: Vector;
 
   constructor(@Host() layer: LayerVectorComponent) {
     super(layer);
@@ -28,7 +30,7 @@ export class SourceClusterComponent extends SourceComponent implements AfterCont
   ngAfterContentInit() {
     this.source = this.sourceVectorComponent.instance;
 
-    this.instance = new source.Cluster(this);
+    this.instance = new Cluster(this);
     this.host.instance.setSource(this.instance);
   }
 }

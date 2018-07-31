@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
-import { View, Extent, Coordinate } from 'openlayers';
+import View from 'ol/View';
 import { MapComponent } from './map.component';
+import {Coordinate, Extent} from '../ol-models';
 
 @Component({
   selector: 'aol-view',

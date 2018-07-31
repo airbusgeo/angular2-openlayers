@@ -1,5 +1,6 @@
 import { Component, Host, Input, OnInit, forwardRef } from '@angular/core';
-import { source } from 'openlayers';
+import { TileJSON } from 'ol/source';
+import { TileGrid } from 'ol/tilegrid';
 import { LayerTileComponent } from '../layers/layertile.component';
 import { SourceComponent } from './source.component';
 
@@ -9,7 +10,7 @@ import { SourceComponent } from './source.component';
   providers: [{ provide: SourceComponent, useExisting: forwardRef(() => SourceTileJSONComponent) }],
 })
 export class SourceTileJSONComponent extends SourceComponent implements OnInit {
-  instance: source.TileJSON;
+  instance: TileJSON;
 
   @Input()
   url: string;
@@ -19,7 +20,7 @@ export class SourceTileJSONComponent extends SourceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.instance = new source.TileJSON(this);
+    this.instance = new TileJSON(this);
     this.host.instance.setSource(this.instance);
   }
 }

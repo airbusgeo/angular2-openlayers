@@ -1,6 +1,7 @@
 import { OnDestroy, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Event } from 'ol/events';
 import { MapComponent } from '../map.component';
-import { Extent } from 'openlayers';
+import { Extent } from '../../ol-models';
 import { LayerGroupComponent } from './layergroup.component';
 
 export abstract class LayerComponent implements OnInit, OnChanges, OnDestroy {
@@ -21,11 +22,11 @@ export abstract class LayerComponent implements OnInit, OnChanges, OnDestroy {
   maxResolution: number;
 
   @Input()
-  precompose: (evt: ol.events.Event) => void;
+  precompose: (evt: Event) => void;
   @Input()
-  postcompose: (evt: ol.events.Event) => void;
+  postcompose: (evt: Event) => void;
 
-  constructor(protected host: LayerGroupComponent | MapComponent) {}
+  constructor(protected host: MapComponent | LayerGroupComponent) {}
 
   ngOnInit() {
     if (this.precompose !== null && this.precompose !== undefined) {

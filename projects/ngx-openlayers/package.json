@@ -1,10 +1,11 @@
 {
   "name": "ngx-openlayers",
   "version": "0.0.1",
+  "dependencies": {
+    "ol": "^5.1.3"
+  },
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
-    "@types/openlayers": "4.3.x || 4.4.x",
-    "openlayers": "4.3.x || 4.4.x"
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0"
   }
 }

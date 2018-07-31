@@ -1,9 +1,10 @@
 import { Component, Optional, OnChanges, Input, SimpleChanges } from '@angular/core';
-import { proj, Coordinate } from 'openlayers';
+import { Projection, transform } from 'ol/proj';
 import { MapComponent } from './map.component';
-import { GeometryPointComponent, GeometryLinestringComponent, GeometryPolygonComponent } from './geometry.components';
 import { ViewComponent } from './view.component';
+import { GeometryLinestringComponent, GeometryPointComponent, GeometryPolygonComponent } from './geometry.components';
 import { OverlayComponent } from './overlay.component';
+import { Coordinate } from '../ol-models';
 
 @Component({
   selector: 'aol-coordinate',
@@ -36,7 +37,7 @@ export class CoordinateComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    let referenceProjection: proj.Projection;
+    let referenceProjection: Projection;
     let referenceProjectionCode: string;
     let transformedCoordinates: number[];
 
@@ -46,7 +47,7 @@ export class CoordinateComponent implements OnChanges {
     if (this.srid === referenceProjectionCode) {
       transformedCoordinates = [this.x, this.y];
     } else {
-      transformedCoordinates = proj.transform([this.x, this.y], this.srid, referenceProjectionCode);
+      transformedCoordinates = transform([this.x, this.y], this.srid, referenceProjectionCode);
     }
 
     switch (this.host.componentType) {
@@ -91,7 +92,7 @@ export class CollectionCoordinatesComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    let referenceProjection: proj.Projection;
+    let referenceProjection: Projection;
     let referenceProjectionCode: string;
     let transformedCoordinates: Array<Coordinate>;
 
@@ -106,7 +107,7 @@ export class CollectionCoordinatesComponent implements OnChanges {
       transformedCoordinates = [];
       this.coordinates.forEach(
         function(coordinate: Coordinate) {
-          transformedCoordinates.push(proj.transform(coordinate, this.srid, referenceProjectionCode));
+          transformedCoordinates.push(transform(coordinate, this.srid, referenceProjectionCode));
         }.bind(this)
       );
     }

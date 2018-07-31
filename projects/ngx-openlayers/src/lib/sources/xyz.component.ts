@@ -9,9 +9,10 @@ import {
   SimpleChanges,
   Optional,
 } from '@angular/core';
-import { source, Size, TileUrlFunctionType, TileLoadFunctionType, tilegrid } from 'openlayers';
+import { XYZ } from 'ol/source';
 import { LayerTileComponent } from '../layers/layertile.component';
 import { SourceComponent } from './source.component';
+import { Size } from '../../ol-models';
 import { TileGridComponent } from '../tilegrid.component';
 import { SourceRasterComponent } from './raster.component';
 
@@ -21,7 +22,7 @@ import { SourceRasterComponent } from './raster.component';
   providers: [{ provide: SourceComponent, useExisting: forwardRef(() => SourceXYZComponent) }],
 })
 export class SourceXYZComponent extends SourceComponent implements AfterContentInit, OnChanges {
-  instance: source.XYZ;
+  instance: XYZ;
   @Input()
   cacheSize: number;
   @Input()
@@ -37,15 +38,15 @@ export class SourceXYZComponent extends SourceComponent implements AfterContentI
   @Input()
   maxZoom: number;
   @Input()
-  tileGrid: tilegrid.TileGrid;
+  tileGrid: any;
   @Input()
-  tileLoadFunction?: TileLoadFunctionType;
+  tileLoadFunction?: any;
   @Input()
   tilePixelRatio: number;
   @Input()
   tileSize: number | Size;
   @Input()
-  tileUrlFunction: TileUrlFunctionType;
+  tileUrlFunction: any;
   @Input()
   url: string;
   @Input()
@@ -71,7 +72,7 @@ export class SourceXYZComponent extends SourceComponent implements AfterContentI
     if (this.tileGridXYZ) {
       this.tileGrid = this.tileGridXYZ.instance;
     }
-    this.instance = new source.XYZ(this);
+    this.instance = new XYZ(this);
     this._register(this.instance);
   }
 
@@ -89,7 +90,7 @@ export class SourceXYZComponent extends SourceComponent implements AfterContentI
 
     this.instance.setProperties(properties, false);
     if (changes.hasOwnProperty('url')) {
-      this.instance = new source.XYZ(this);
+      this.instance = new XYZ(this);
       this._register(this.instance);
     }
   }

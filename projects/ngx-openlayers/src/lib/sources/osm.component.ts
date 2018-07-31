@@ -1,9 +1,10 @@
 import { Component, Host, forwardRef, Input, AfterContentInit, Optional } from '@angular/core';
-import { source, AttributionLike, TileLoadFunctionType } from 'openlayers';
+import { OSM } from 'ol/source';
 import { LayerTileComponent } from '../layers/layertile.component';
 import { SourceComponent } from './source.component';
 import { SourceXYZComponent } from './xyz.component';
 import { SourceRasterComponent } from './raster.component';
+import { AttributionLike, TileLoadFunction } from '../../ol-models';
 
 @Component({
   selector: 'aol-source-osm',
@@ -11,7 +12,7 @@ import { SourceRasterComponent } from './raster.component';
   providers: [{ provide: SourceComponent, useExisting: forwardRef(() => SourceOsmComponent) }],
 })
 export class SourceOsmComponent extends SourceXYZComponent implements AfterContentInit {
-  instance: source.OSM;
+  instance: OSM;
 
   @Input()
   attributions: AttributionLike;
@@ -26,7 +27,7 @@ export class SourceOsmComponent extends SourceXYZComponent implements AfterConte
   @Input()
   reprojectionErrorThreshold: number;
   @Input()
-  tileLoadFunction: TileLoadFunctionType;
+  tileLoadFunction: TileLoadFunction;
   @Input()
   url: string;
   @Input()
@@ -47,7 +48,7 @@ export class SourceOsmComponent extends SourceXYZComponent implements AfterConte
     if (this.tileGridXYZ) {
       this.tileGrid = this.tileGridXYZ.instance;
     }
-    this.instance = new source.OSM(this);
+    this.instance = new OSM(this);
     this._register(this.instance);
   }
 }

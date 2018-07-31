@@ -1,5 +1,7 @@
 import { Component, Input, Host, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { style } from 'openlayers';
+import { Icon } from 'ol/style';
+import IconAnchorUnits from 'ol/style/IconAnchorUnits';
+import IconOrigin from 'ol/style/IconOrigin';
 import { StyleComponent } from './style.component';
 
 @Component({
@@ -7,26 +9,26 @@ import { StyleComponent } from './style.component';
   template: `<div class="aol-style-icon"></div>`,
 })
 export class StyleIconComponent implements OnInit, OnChanges {
-  public instance: style.Icon;
+  public instance: Icon;
 
   @Input()
   anchor: [number, number];
   @Input()
-  anchorXUnits: style.IconAnchorUnits;
+  anchorXUnits: IconAnchorUnits;
   @Input()
-  anchorYUnits: style.IconAnchorUnits;
+  anchorYUnits: IconAnchorUnits;
   @Input()
-  anchorOrigin: style.IconOrigin;
+  anchorOrigin: IconOrigin;
   @Input()
   color: [number, number, number, number];
   @Input()
-  crossOrigin: style.IconOrigin;
+  crossOrigin: IconOrigin;
   @Input()
   img: string;
   @Input()
   offset: [number, number];
   @Input()
-  offsetOrigin: style.IconOrigin;
+  offsetOrigin: IconOrigin;
   @Input()
   opacity: number;
   @Input()
@@ -48,7 +50,7 @@ export class StyleIconComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     // console.log('creating ol.style.Icon instance with: ', this);
-    this.instance = new style.Icon(this);
+    this.instance = new Icon(this);
     this.host.instance.setImage(this.instance);
   }
 
@@ -66,7 +68,7 @@ export class StyleIconComponent implements OnInit, OnChanges {
       this.instance.setScale(changes['scale'].currentValue);
     }
     if (changes['src']) {
-      this.instance = new style.Icon(this);
+      this.instance = new Icon(this);
       this.host.instance.setImage(this.instance);
     }
     this.host.update();

@@ -67,8 +67,6 @@ import { ModifyInteractionComponent } from './lib/interactions/modify.component'
 import { TranslateInteractionComponent } from './lib/interactions/translate.component';
 import { OverlayComponent } from './lib/overlay.component';
 import { ContentComponent } from './lib/content.component';
-import { AttributionComponent } from './lib/attribution.component';
-import { AttributionsComponent } from './lib/attributions.component';
 
 export {
   MapComponent,
@@ -134,8 +132,6 @@ export {
   TranslateInteractionComponent,
   OverlayComponent,
   ContentComponent,
-  AttributionComponent,
-  AttributionsComponent,
 };
 
 const COMPONENTS = [
@@ -210,8 +206,6 @@ const COMPONENTS = [
 
   OverlayComponent,
   ContentComponent,
-  AttributionComponent,
-  AttributionsComponent,
 ];
 
 @NgModule({

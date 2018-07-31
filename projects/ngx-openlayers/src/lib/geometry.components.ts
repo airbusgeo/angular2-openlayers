@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { geom } from 'openlayers';
+import { Geometry, LineString, Point, Polygon } from 'ol/geom';
 import { FeatureComponent } from './feature.component';
 
 @Component({
@@ -8,14 +8,14 @@ import { FeatureComponent } from './feature.component';
 })
 export class GeometryLinestringComponent implements OnInit, OnDestroy {
   public componentType = 'geometry-linestring';
-  public instance: geom.LineString;
+  public instance: LineString;
 
   constructor(private host: FeatureComponent) {
     // console.log('instancing aol-geometry-linestring');
   }
 
   ngOnInit() {
-    this.instance = new geom.LineString([]);
+    this.instance = new LineString([]);
     this.host.instance.setGeometry(this.instance);
   }
   ngOnDestroy() {
@@ -29,14 +29,14 @@ export class GeometryLinestringComponent implements OnInit, OnDestroy {
 })
 export class GeometryPointComponent implements OnInit, OnDestroy {
   public componentType = 'geometry-point';
-  public instance: geom.Point;
+  public instance: Point;
 
   constructor(private host: FeatureComponent) {
     // console.log('creating aol-geometry-point');
   }
 
   ngOnInit() {
-    this.instance = new geom.Point([0, 0]); // defaulting coordinates to [0,0]. To be overridden in child component.
+    this.instance = new Point([0, 0]); // defaulting coordinates to [0,0]. To be overridden in child component.
     this.host.instance.setGeometry(this.instance);
   }
 
@@ -51,7 +51,7 @@ export class GeometryPointComponent implements OnInit, OnDestroy {
 })
 export class GeometryPolygonComponent implements OnInit, OnDestroy {
   public componentType = 'geometry-polygon';
-  public instance: geom.Polygon;
+  public instance: Polygon;
 
   constructor(private host: FeatureComponent) {
     // console.log('creating aol-geometry-polygon');
@@ -59,7 +59,7 @@ export class GeometryPolygonComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // defaulting coordinates to [0,0]. To be overridden in child component.
-    this.instance = new geom.Polygon([[[0, 0], [1, 0], [1, 1]]]);
+    this.instance = new Polygon([[[0, 0], [1, 0], [1, 1]]]);
     this.host.instance.setGeometry(this.instance);
   }
 

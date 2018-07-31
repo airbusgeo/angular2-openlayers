@@ -1,8 +1,9 @@
 import { Component, Input, Optional, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { style, Color, ColorLike } from 'openlayers';
+import { Fill } from 'ol/style';
 import { StyleComponent } from './style.component';
 import { StyleCircleComponent } from './circle.component';
 import { StyleTextComponent } from './text.component';
+import { Color, ColorLike } from '../../ol-models';
 
 @Component({
   selector: 'aol-style-fill',
@@ -11,7 +12,7 @@ import { StyleTextComponent } from './text.component';
 export class StyleFillComponent implements OnInit, OnChanges {
   /* the typings do not have the setters */
   private host: /*StyleComponent|StyleCircleComponent|StyleTextComponent*/ any;
-  public instance: style.Fill;
+  public instance: Fill;
 
   @Input()
   color: Color | ColorLike;
@@ -36,7 +37,7 @@ export class StyleFillComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     // console.log('creating ol.style.Fill instance with: ', this);
-    this.instance = new style.Fill(this);
+    this.instance = new Fill(this);
     switch (this.host.componentType) {
       case 'style':
         this.host.instance.setFill(this.instance);
