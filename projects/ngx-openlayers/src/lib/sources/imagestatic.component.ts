@@ -1,7 +1,8 @@
 import { Component, Host, Input, OnInit, forwardRef } from '@angular/core';
-import { ProjectionLike, source, Extent, AttributionLike, ImageLoadFunctionType, Size } from 'openlayers';
+import { ImageStatic } from 'ol/source';
 import { SourceComponent } from './source.component';
 import { LayerImageComponent } from '../layers/layerimage.component';
+import { AttributionLike, Extent, ImageLoadFunction, ProjectionLike, Size } from '../../ol-models';
 
 @Component({
   selector: 'aol-source-imagestatic',
@@ -9,7 +10,7 @@ import { LayerImageComponent } from '../layers/layerimage.component';
   providers: [{ provide: SourceComponent, useExisting: forwardRef(() => SourceImageStaticComponent) }],
 })
 export class SourceImageStaticComponent extends SourceComponent implements OnInit {
-  instance: source.ImageStatic;
+  instance: ImageStatic;
 
   @Input()
   projection: ProjectionLike | string;
@@ -22,9 +23,9 @@ export class SourceImageStaticComponent extends SourceComponent implements OnIni
   @Input()
   crossOrigin?: string;
   @Input()
-  imageLoadFunction?: ImageLoadFunctionType;
+  imageLoadFunction?: ImageLoadFunction;
   @Input()
-  logo?: string | olx.LogoOptions;
+  logo?: string; // TODO: (string | olx.LogoOptions);
   @Input()
   imageSize?: Size;
 
@@ -33,7 +34,7 @@ export class SourceImageStaticComponent extends SourceComponent implements OnIni
   }
 
   ngOnInit() {
-    this.instance = new source.ImageStatic(this);
+    this.instance = new ImageStatic(this);
     this.host.instance.setSource(this.instance);
   }
 }

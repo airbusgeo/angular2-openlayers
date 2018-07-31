@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { control } from 'openlayers';
+import { Rotate } from 'ol/control';
 import { MapComponent } from '../map.component';
 
 @Component({
@@ -7,7 +7,7 @@ import { MapComponent } from '../map.component';
   template: `<ng-content></ng-content>`,
 })
 export class ControlRotateComponent implements OnInit, OnDestroy {
-  instance: control.Rotate;
+  instance: Rotate;
 
   @Input()
   className: string;
@@ -25,7 +25,7 @@ export class ControlRotateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.instance = new control.Rotate(this);
+    this.instance = new Rotate(this);
     this.map.instance.addControl(this.instance);
   }
 

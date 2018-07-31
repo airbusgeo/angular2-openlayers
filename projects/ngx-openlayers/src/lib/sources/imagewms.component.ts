@@ -1,7 +1,8 @@
 import { Component, Host, Input, OnInit, forwardRef } from '@angular/core';
-import { AttributionLike, ImageLoadFunctionType, ProjectionLike, source } from 'openlayers';
+import { ImageWMS } from 'ol/source';
 import { LayerImageComponent } from '../layers/layerimage.component';
 import { SourceComponent } from './source.component';
+import { AttributionLike, ImageLoadFunction, ProjectionLike } from '../../ol-models';
 
 @Component({
   selector: 'aol-source-imagewms',
@@ -9,7 +10,7 @@ import { SourceComponent } from './source.component';
   providers: [{ provide: SourceComponent, useExisting: forwardRef(() => SourceImageWMSComponent) }],
 })
 export class SourceImageWMSComponent extends SourceComponent implements OnInit {
-  instance: source.ImageWMS;
+  instance: ImageWMS;
 
   @Input()
   attributions: AttributionLike;
@@ -20,9 +21,9 @@ export class SourceImageWMSComponent extends SourceComponent implements OnInit {
   @Input()
   serverType: string;
   @Input()
-  imageLoadFunction?: ImageLoadFunctionType;
+  imageLoadFunction?: ImageLoadFunction;
   @Input()
-  logo: string | olx.LogoOptions;
+  logo: string; // TODO: (string | olx.LogoOptions);
   @Input()
   params: Object;
   @Input()
@@ -39,7 +40,7 @@ export class SourceImageWMSComponent extends SourceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.instance = new source.ImageWMS(this);
+    this.instance = new ImageWMS(this);
     this.host.instance.setSource(this.instance);
   }
 }

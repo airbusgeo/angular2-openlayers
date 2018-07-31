@@ -3,7 +3,7 @@
   "dest": "../../dist/ngx-openlayers",
   "deleteDestPath": false,
   "whitelistedNonPeerDependencies": [
-   "openlayers", "@types/openlayers"
+   "ol", "@angular/core"
   ],
   "lib": {
     "entryFile": "src/public_api.ts"

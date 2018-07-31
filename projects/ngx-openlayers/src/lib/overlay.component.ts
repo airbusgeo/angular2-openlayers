@@ -1,7 +1,8 @@
 import { Component, ContentChild, Input, OnDestroy, OnInit } from '@angular/core';
 import { MapComponent } from './map.component';
-import { Overlay, OverlayPositioning } from 'openlayers';
+import { Overlay } from 'ol';
 import { ContentComponent } from './content.component';
+import { OverlayPositioning } from '../ol-models';
 
 @Component({
   selector: 'aol-overlay',
@@ -27,7 +28,7 @@ export class OverlayComponent implements OnInit, OnDestroy {
   @Input()
   autoPan: boolean;
   @Input()
-  autoPanAnimation: olx.animation.PanOptions;
+  autoPanAnimation: any; // TODO: olx.animation.PanOptions;
   @Input()
   autoPanMargin: number;
 

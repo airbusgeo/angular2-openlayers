@@ -1,15 +1,16 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
-import { control, CoordinateFormatType, ProjectionLike } from 'openlayers';
+import MousePosition from 'ol/control/MousePosition';
 import { MapComponent } from '../map.component';
+import { CoordinateFormat, ProjectionLike } from '../../ol-models';
 
 @Component({
   selector: 'aol-control-mouseposition',
   template: ``,
 })
 export class ControlMousePositionComponent implements OnInit, OnDestroy {
-  instance: control.MousePosition;
+  instance: MousePosition;
   @Input()
-  coordinateFormat: CoordinateFormatType;
+  coordinateFormat: CoordinateFormat;
   @Input()
   projection: ProjectionLike;
   target: Element;
@@ -19,7 +20,7 @@ export class ControlMousePositionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.target = this.element.nativeElement;
     // console.log('ol.control.MousePosition init: ', this);
-    this.instance = new control.MousePosition(this);
+    this.instance = new MousePosition(this);
     this.map.instance.addControl(this.instance);
   }
 
