@@ -67,6 +67,7 @@ import { ModifyInteractionComponent } from './lib/interactions/modify.component'
 import { TranslateInteractionComponent } from './lib/interactions/translate.component';
 import { OverlayComponent } from './lib/overlay.component';
 import { ContentComponent } from './lib/content.component';
+import { CesiumWorldTerrainComponent } from './lib/cesium/cesium-world-terrain.component';
 
 export {
   MapComponent,
@@ -132,6 +133,9 @@ export {
   TranslateInteractionComponent,
   OverlayComponent,
   ContentComponent,
+
+  // Cesium specific components
+  CesiumWorldTerrainComponent
 };
 
 const COMPONENTS = [
@@ -206,6 +210,9 @@ const COMPONENTS = [
 
   OverlayComponent,
   ContentComponent,
+
+  // Cesium specific components
+  CesiumWorldTerrainComponent
 ];
 
 @NgModule({

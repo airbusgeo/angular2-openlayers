@@ -16,6 +16,8 @@ import ObjectEvent from 'ol/Object';
 import RenderEvent from 'ol/render/Event';
 import { Control } from 'ol/control';
 import { Interaction } from 'ol/interaction';
+import OLCesium from 'ol-cesium';
+declare var Cesium: any;
 
 @Component({
   selector: 'aol-map',
@@ -23,6 +25,7 @@ import { Interaction } from 'ol/interaction';
 })
 export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   public instance: Map;
+  public map3dInstance: OLCesium;
   public componentType = 'map';
 
   @Input()
@@ -63,6 +66,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   @Output()
   onSingleClick: EventEmitter<MapBrowserEvent>;
 
+  @Input()
+  map3dEnabled = false;
+
   // we pass empty arrays to not get default controls/interactions because we have our own directives
   controls: Control[] = [];
   interactions: Interaction[] = [];
@@ -96,6 +102,20 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
     this.instance.on('singleclick', (event: MapBrowserEvent) => this.onSingleClick.emit(event));
   }
 
+  init3dMap() {
+    this.map3dInstance = new OLCesium({map: this.instance});
+    this.map3dInstance.getCesiumScene().skyBox = new Cesium.SkyBox({
+      sources: {
+        positiveX: 'assets/cesium/Assets/Textures/SkyBox/tycho2t3_80_px.jpg',
+        negativeX: 'assets/cesium/Assets/Textures/SkyBox/tycho2t3_80_mx.jpg',
+        positiveY: 'assets/cesium/Assets/Textures/SkyBox/tycho2t3_80_py.jpg',
+        negativeY: 'assets/cesium/Assets/Textures/SkyBox/tycho2t3_80_my.jpg',
+        positiveZ: 'assets/cesium/Assets/Textures/SkyBox/tycho2t3_80_pz.jpg',
+        negativeZ: 'assets/cesium/Assets/Textures/SkyBox/tycho2t3_80_mz.jpg',
+      }
+    });
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     const properties: { [index: string]: any } = {};
     if (!this.instance) {
@@ -103,6 +123,12 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
     }
     for (const key in changes) {
       if (changes.hasOwnProperty(key)) {
+        if (key === 'map3dEnabled') {
+          if (changes[key].currentValue === true && this.map3dInstance == null) {
+            this.init3dMap();
+          }
+          this.map3dInstance.setEnabled(changes[key].currentValue);
+        }
         properties[key] = changes[key].currentValue;
       }
     }
