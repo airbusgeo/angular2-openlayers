@@ -5,6 +5,11 @@ export const examplesList = [
     routerLink: 'basic',
   },
   {
+    title: '3D',
+    description: '3D example. Demonstrates integration with Cesium globe.',
+    routerLink: 'cesium',
+  },
+  {
     title: 'Map position',
     description: 'Map longitude, latitude and zoom.',
     routerLink: 'map-position',
