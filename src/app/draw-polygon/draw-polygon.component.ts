@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { interaction, Feature, geom, proj } from 'openlayers';
+import Draw from 'ol/interaction/Draw';
+import { Feature } from 'ol';
+import Projection from 'ol/proj/Projection';
+import { Polygon } from 'ol/geom';
 
 @Component({
   selector: 'app-draw-polygon',
@@ -64,7 +67,7 @@ export class DrawPolygonComponent implements OnInit {
   constructor() {}
 
   isDrawing = false;
-  drawBoxGeometryFunction = interaction.Draw.createBox();
+  drawBoxGeometryFunction = Draw.createBox();
   feature;
 
   ngOnInit() {}
@@ -74,8 +77,8 @@ export class DrawPolygonComponent implements OnInit {
   }
 
   endDraw(feature: Feature) {
-    const olGeomPolygon = geom.Polygon.fromExtent(feature.getGeometry().getExtent());
-    olGeomPolygon.transform(new proj.Projection({ code: 'EPSG:3857' }), new proj.Projection({ code: 'EPSG:4326' }));
+    const olGeomPolygon = Polygon.fromExtent(feature.getGeometry().getExtent());
+    olGeomPolygon.transform(new Projection({ code: 'EPSG:3857' }), new Projection({ code: 'EPSG:4326' }));
     this.feature = {
       type: 'Feature',
       properties: {},
