@@ -10,8 +10,7 @@
     "experimentalDecorators": true,
     "target": "es5",
     "typeRoots": [
-      "node_modules/@types",
-      "projects/ngx-openlayers/node_modules/@types"
+      "node_modules/@types"
     ],
     "lib": [
       "es2017",
@@ -20,36 +19,6 @@
     "paths": {
       "ngx-openlayers": [
         "dist/ngx-openlayers"
-      ],
-      "ol": [
-        "projects/ngx-openlayers/node_modules/ol"
-      ],
-      "ol/format": [
-        "projects/ngx-openlayers/node_modules/ol/format"
-      ],
-      "ol/geom": [
-        "projects/ngx-openlayers/node_modules/ol/geom"
-      ],
-      "ol/interaction": [
-        "projects/ngx-openlayers/node_modules/ol/interaction"
-      ],
-      "ol/interaction/Draw": [
-        "projects/ngx-openlayers/node_modules/ol/interaction/Draw"
-      ],
-      "ol/layer": [
-        "projects/ngx-openlayers/node_modules/ol/layer"
-      ],
-      "ol/proj": [
-        "projects/ngx-openlayers/node_modules/ol/proj"
-      ],
-      "ol/proj/Projection": [
-        "projects/ngx-openlayers/node_modules/ol/proj/Projection"
-      ],
-      "ol/source": [
-        "projects/ngx-openlayers/node_modules/ol/source"
-      ],
-      "ol/style": [
-        "projects/ngx-openlayers/node_modules/ol/style"
       ]
     }
   }
