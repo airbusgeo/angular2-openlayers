@@ -127,9 +127,12 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
           if (changes[key].currentValue === true && this.map3dInstance == null) {
             this.init3dMap();
           }
-          this.map3dInstance.setEnabled(changes[key].currentValue);
+          if (this.map3dInstance != null) {
+            this.map3dInstance.setEnabled(changes[key].currentValue);
+          }
+        } else {
+          properties[key] = changes[key].currentValue;
         }
-        properties[key] = changes[key].currentValue;
       }
     }
     // console.log('changes detected in aol-map, setting new properties: ', properties);
@@ -138,5 +141,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngAfterViewInit() {
     this.instance.updateSize();
+    if (this.map3dEnabled && this.map3dInstance == null) {
+      this.init3dMap();
+    }
   }
 }
