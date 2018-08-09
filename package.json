@@ -28,7 +28,7 @@
     "hammer-timejs": "^1.1.0",
     "hammerjs": "^2.0.8",
     "ol": "^5.1.3",
-    "ol-cesium": "^2.2.0",
+    "ol-cesium": "^2.2.1",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
