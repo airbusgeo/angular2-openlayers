@@ -1,11 +1,11 @@
 {
-  "name": "demo-ngx-openlayers",
+  "name": "demo-ngx-ol-cesium",
   "version": "1.0.0-next.0",
   "scripts": {
     "ng": "ng",
     "start": "yarn build:lib && ng serve",
-    "build:lib": "yarn --prefer-offline --cwd projects/ngx-openlayers && ng build ngx-openlayers --prod",
-    "build": "yarn build:lib && ng build demo-ngx-openlayers",
+    "build:lib": "yarn --prefer-offline --cwd projects/ngx-ol-cesium && ng build ngx-ol-cesium --prod",
+    "build": "yarn build:lib && ng build demo-ngx-ol-cesium",
     "test": "yarn build:lib && ng test",
     "lint": "ng lint",
     "e2e": "yarn build:lib && ng e2e",

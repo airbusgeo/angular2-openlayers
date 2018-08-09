@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { MapComponent } from 'ngx-openlayers';
+import { MapComponent } from 'ngx-ol-cesium';
 
 @Component({
   selector: 'app-swipe',

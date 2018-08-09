@@ -17,8 +17,8 @@
       "dom"
     ],
     "paths": {
-      "ngx-openlayers": [
-        "dist/ngx-openlayers"
+      "ngx-ol-cesium": [
+        "dist/ngx-ol-cesium"
       ],
       "goog/asserts.js": [
         "node_modules/ol-cesium/src/goog/asserts.js"

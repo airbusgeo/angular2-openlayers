@@ -4878,9 +4878,9 @@ obuf@^1.0.0, obuf@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
 
-ol-cesium@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/ol-cesium/-/ol-cesium-2.1.0.tgz#7b46b91186191a7cbcd45637f72f4e0fc58d503e"
+ol-cesium@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ol-cesium/-/ol-cesium-2.2.0.tgz#c730ae148a12c8589c872073b06bf86a9f8953b0"
   dependencies:
     htmlparser2 "3.9.2"
 

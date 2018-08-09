@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MapComponent, ViewComponent } from 'ngx-openlayers';
+import { MapComponent, ViewComponent } from 'ngx-ol-cesium';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { transform } from 'ol/proj';
 import Projection from 'ol/proj/Projection';

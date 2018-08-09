@@ -1,6 +1,6 @@
 {
-  "name": "ngx-openlayers",
-  "version": "0.0.1",
+  "name": "ngx-ol-cesium",
+  "version": "0.0.5",
   "peerDependencies": {
     "@angular/common": "^6.0.0",
     "@angular/core": "^6.0.0",

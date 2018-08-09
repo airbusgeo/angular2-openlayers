@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "demo-ngx-openlayers": {
+    "demo-ngx-ol-cesium": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -37,7 +37,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/demo-ngx-openlayers",
+            "outputPath": "dist/demo-ngx-ol-cesium",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -83,18 +83,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo-ngx-openlayers:build"
+            "browserTarget": "demo-ngx-ol-cesium:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "demo-ngx-openlayers:build:production"
+              "browserTarget": "demo-ngx-ol-cesium:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo-ngx-openlayers:build"
+            "browserTarget": "demo-ngx-ol-cesium:build"
           }
         },
         "test": {
@@ -130,7 +130,7 @@
         }
       }
     },
-    "demo-ngx-openlayers-e2e": {
+    "demo-ngx-ol-cesium-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -138,7 +138,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "demo-ngx-openlayers:serve"
+            "devServerTarget": "demo-ngx-ol-cesium:serve"
           }
         },
         "lint": {
@@ -152,38 +152,38 @@
         }
       }
     },
-    "ngx-openlayers": {
-      "root": "projects/ngx-openlayers",
-      "sourceRoot": "projects/ngx-openlayers/src",
+    "ngx-ol-cesium": {
+      "root": "projects/ngx-ol-cesium",
+      "sourceRoot": "projects/ngx-ol-cesium/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/ngx-openlayers/tsconfig.lib.json",
-            "project": "projects/ngx-openlayers/ng-package.json"
+            "tsConfig": "projects/ngx-ol-cesium/tsconfig.lib.json",
+            "project": "projects/ngx-ol-cesium/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "projects/ngx-openlayers/ng-package.prod.json"
+              "project": "projects/ngx-ol-cesium/ng-package.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-openlayers/src/test.ts",
-            "tsConfig": "projects/ngx-openlayers/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-openlayers/karma.conf.js"
+            "main": "projects/ngx-ol-cesium/src/test.ts",
+            "tsConfig": "projects/ngx-ol-cesium/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-ol-cesium/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-openlayers/tsconfig.lib.json",
-              "projects/ngx-openlayers/tsconfig.spec.json"
+              "projects/ngx-ol-cesium/tsconfig.lib.json",
+              "projects/ngx-ol-cesium/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -195,5 +195,5 @@
       }
     }
   },
-  "defaultProject": "demo-ngx-openlayers"
+  "defaultProject": "demo-ngx-ol-cesium"
 }

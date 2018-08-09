@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { SourceRasterComponent } from 'ngx-openlayers';
+import { SourceRasterComponent } from 'ngx-ol-cesium';
 
 interface RasterData {
   brightness: number;

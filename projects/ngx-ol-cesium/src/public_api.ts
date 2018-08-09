@@ -220,4 +220,4 @@ const COMPONENTS = [
   imports: [CommonModule],
   exports: COMPONENTS,
 })
-export class AngularOpenlayersModule {}
+export class AngularOlCesiumModule {}

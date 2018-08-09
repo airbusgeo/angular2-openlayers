@@ -1,5 +1,5 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { MapComponent, LayerVectorComponent } from 'ngx-openlayers';
+import { MapComponent, LayerVectorComponent } from 'ngx-ol-cesium';
 import { Fill, Stroke, Style } from 'ol/style';
 import { Layer } from 'ol/layer';
 import { Feature } from 'ol';

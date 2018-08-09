@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularOpenlayersModule } from 'ngx-openlayers';
+import { AngularOlCesiumModule } from 'ngx-ol-cesium';
 import 'hammerjs';
 import 'hammer-timejs';
 
@@ -46,7 +46,7 @@ import { CesiumComponent } from './cesium/cesium.component';
     ColorSelectHoverComponent,
     MarkerComponent,
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule, AngularOpenlayersModule, ReactiveFormsModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule, AngularOlCesiumModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
