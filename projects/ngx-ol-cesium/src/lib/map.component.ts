@@ -128,7 +128,13 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
             this.init3dMap();
           }
           if (this.map3dInstance != null) {
-            this.map3dInstance.setEnabled(changes[key].currentValue);
+            if (changes[key].currentValue) {
+              // Dirty fix: when using drawing interaction,
+              // needs to wait 1 tick for the application to disable 3D
+              setTimeout(() => this.map3dInstance.setEnabled(true));
+            } else {
+              this.map3dInstance.setEnabled(changes[key].currentValue);
+            }
           }
         } else {
           properties[key] = changes[key].currentValue;
