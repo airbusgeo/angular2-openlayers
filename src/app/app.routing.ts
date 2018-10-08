@@ -16,6 +16,7 @@ import { SwipeComponent } from './swipe/swipe.component';
 import { OverlayComponent } from './overlay/overlay.component';
 import { ColorSelectHoverComponent } from './color-select-hover/color-select-hover.component';
 import { MarkerComponent } from './marker/marker.component';
+import { CesiumComponent } from './cesium/cesium.component';
 
 const routes: Routes = [
   { path: '', component: ExamplesListComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
     component: ExamplesItemComponent,
     children: [
       { path: 'basic', component: BasicComponent },
+      { path: 'cesium', component: CesiumComponent },
       { path: 'map-position', component: MapPositionComponent },
       { path: 'cursor-position', component: CursorPositionComponent },
       { path: 'display-geometry', component: DisplayGeometryComponent },

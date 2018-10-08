@@ -44,13 +44,21 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ol-cesium/dist/node_modules/@camptocamp/cesium/Build/Cesium",
+                "output": "./assets/cesium"
+              }
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/ol/ol.css"
+              "node_modules/ol/ol.css",
+              "node_modules/ol-cesium/css/olcs.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/ol-cesium/dist/node_modules/@camptocamp/cesium/Build/Cesium/Cesium.js"
+            ]
           },
           "configurations": {
             "production": {

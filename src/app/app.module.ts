@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { ClusterComponent } from './cluster/cluster.component';
 import { BasicComponent } from './basic/basic.component';
+import { CesiumComponent } from './cesium/cesium.component';
 import { RasterComponent } from './raster/raster.component';
 import { ExamplesListComponent } from './examples-list/examples-list.component';
 import { ExamplesItemComponent } from './examples-item/examples-item.component';
@@ -28,6 +29,7 @@ import { MarkerComponent } from './marker/marker.component';
   declarations: [
     AppComponent,
     BasicComponent,
+    CesiumComponent,
     ClusterComponent,
     RasterComponent,
     ExamplesListComponent,
